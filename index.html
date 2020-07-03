@@ -1,0 +1,171 @@
+<!doctype html>
+
+<html>
+
+  <head>
+
+    <title>Calculator</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+    <style>
+
+    html {
+      background-image: linear-gradient(to bottom right, purple, red);
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100%
+    }
+
+    body {
+      background-color: rgba(0,0,0,0);
+    }
+
+    h1, h2, p {
+      color: #E4E2C3;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .container-fluid {
+      text-align: center;
+      max-width: 500px;
+      border: 1px solid #000;
+      margin-top: 50px;
+    }
+
+    .row {
+      margin: 10px;
+    }
+
+    .btn {
+      margin: 5px;
+    }
+
+     .Implode {
+      opacity: 0;
+    }
+
+    #zero {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div id="calculator" class="container-fluid">
+      <h1>A Simple Calulator</h1>
+      <p><em>Just..uh..don't divide by zero okay?</em></p>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <input type="number" id="firstNumber" class="form-control" placeholder="Enter The First Number">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <input type="number" id="secondNumber" class="form-control" placeholder="Enter The Second Number">
+        </div>
+      </div>
+
+      <div class ="row">
+        <div class="col-sm-2">
+          <button class="btn btn-dark" onclick="addNumbers();"> + </button>
+        </div>
+
+        <div class="col-sm-2">
+          <button class="btn btn-dark" onclick="subtractNumbers();"> - </button>
+        </div>
+
+        <div class="col-sm-2">
+          <button class="btn btn-dark" onclick="multiplyNumbers();"> * </button>
+        </div>
+
+        <div class="col-sm-2">
+          <button class="btn btn-dark" onclick="dividenumbers();"> / </button>
+        </div>
+
+        <div class="col-sm-4">
+          <button class="btn btn-dark" onclick="clearCalculator();"> Clear </button>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Result: <h3 id="result" class="form-control">0</h3></h2>
+        </div>
+      </div>
+    </div>
+
+    <p id="zero">Just a Simple Calculator</p>
+
+    <script>
+
+      function getNumbers() {
+        var number1 = parseFloat(document.getElementById("firstNumber").value);
+        var number2 = parseFloat(document.getElementById("secondNumber").value);
+        return [number1, number2];
+      }
+
+      function addNumbers() {
+        var recieveNumbers = getNumbers();
+        var results = recieveNumbers[0] + recieveNumbers[1];
+        showResult(results);
+      }
+
+      function subtractNumbers() {
+        var recieveNumbers = getNumbers();
+        var results = recieveNumbers[0] - recieveNumbers[1];
+        showResult(results);
+      }
+
+      function multiplyNumbers() {
+        var recieveNumbers = getNumbers();
+        var results = recieveNumbers[0] * recieveNumbers[1];
+        showResult(results);
+      }
+
+      function dividenumbers() {
+        var recieveNumbers = getNumbers();
+        var results = recieveNumbers[0] / recieveNumbers[1];
+
+          if(recieveNumbers[1] == 0){
+            var hidden = document.getElementById('calculator');
+            var warning = document.getElementById('zero');
+            hidden.classList.add('d-none');
+            warning.innerHTML = "Where did the Calculator GO!? I warned you NOT to divide by ZERO, but you just had to try...well...just refresh the page...maybe that will bring it back."
+
+          }
+          else {
+            showResult(results);
+          }
+
+      }
+
+      function showResult(results) {
+        document.getElementById("result").innerHTML = results;
+      }
+
+      function clearCalculator() {
+        document.getElementById("firstNumber").value = null;
+        document.getElementById("secondNumber").value = null;
+        document.getElementById("result").innerHTML = 0;
+      }
+
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+  </body>
+
+
+</html>
